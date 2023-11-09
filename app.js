@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 var gameStart = {},
   gameSpeed = {},
   gameArea = {},
@@ -141,5 +141,5 @@ function init() {
   initElement();
   initEvent();
 }
-
+*/
 window.addEventListener('DOMContentLoaded', init);
