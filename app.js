@@ -1,5 +1,5 @@
 'use strict';
-/*
+
 var gameStart = {},
   gameSpeed = {},
   gameArea = {},
@@ -27,12 +27,38 @@ function initElement() {
   gameArea.height = gameAreaHeight;
 }
 
+
+
 function createFood() {
   snakeFood = {
     x: Math.round(Math.random() * (gameAreaWidth - cellWidth) / cellWidth),
     y: Math.round(Math.random() * (gameAreaHeight - cellWidth) / cellWidth),
   };
 }
+
+
+
+function writeScore() {
+  gameAreaContext.font = '50px sans-serif';
+  gameAreaContext.fillStyle = '#FF0000';
+  gameAreaContext.fillText('Score: ' + playerScore, (gameAreaWidth / 2) - 100, gameAreaHeight / 2);
+}
+
+function createSquare(x, y) {
+  gameAreaContext.fillStyle = '#000000';
+  gameAreaContext.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
+}
+
+
+
+function changeDirection(e) {
+  var keys = e.which;
+  if (keys == '40' && snakeDirection != 'up') snakeDirection = 'down';
+  else if (keys == '39' && snakeDirection != 'left') snakeDirection = 'right';
+  else if (keys == '38' && snakeDirection != 'down') snakeDirection = 'up';
+  else if (keys == '37' && snakeDirection != 'right') snakeDirection = 'left';
+}
+
 
 function control(x, y, array) {
   for (var index = 0, length = array.length; index < length; index++) {
@@ -47,16 +73,11 @@ function writeScore() {
   gameAreaContext.fillText('Score: ' + playerScore, (gameAreaWidth / 2) - 100, gameAreaHeight / 2);
 }
 
-function createSquare(x, y) {
-  gameAreaContext.fillStyle = '#000000';
-  gameAreaContext.fillRect(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
-}
-
 function createGameArea() {
   var snakeX = snake[0].x;
   var snakeY = snake[0].y;
 
-  gameAreaContext.fillStyle = '#FFFFFF';
+  gameAreaContext.fillStyle = '#354a5e';
   gameAreaContext.fillRect(0, 0, gameAreaWidth, gameAreaHeight);
 
   gameAreaContext.strokeStyle = '#000000';
@@ -124,22 +145,15 @@ function onStartGame() {
   startGame();
 }
 
-function changeDirection(e) {
-  var keys = e.which;
-  if (keys == '40' && snakeDirection != 'up') snakeDirection = 'down';
-  else if (keys == '39' && snakeDirection != 'left') snakeDirection = 'right';
-  else if (keys == '38' && snakeDirection != 'down') snakeDirection = 'up';
-  else if (keys == '37' && snakeDirection != 'right') snakeDirection = 'left';
-}
-
 function initEvent() {
   gameStart.addEventListener('click', onStartGame);
   window.addEventListener('keydown', changeDirection);
 }
 
+
 function init() {
   initElement();
   initEvent();
 }
-*/
+
 window.addEventListener('DOMContentLoaded', init);
