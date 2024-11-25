@@ -12,12 +12,20 @@ var gameStart = {},
   snakeFood = {},
   snakeDirection = '',
   speedSize = 0,
-  timer = {};
+  timer = {},
+  buttonUp = {},
+  buttonDown = {},
+  buttonLeft = {},
+  buttonRight = {};
 
 function initElement() {
   gameStart = document.querySelector('#gameStart');
   gameSpeed = document.querySelector('#gameSpeed');
   gameArea = document.querySelector('#gameArea');
+  buttonUp = document.querySelector('#directionUp');
+  buttonDown = document.querySelector('#directionDown');
+  buttonLeft = document.querySelector('#directionLeft');
+  buttonRight = document.querySelector('#directionRight');
 
   gameAreaContext = gameArea.getContext('2d');
   gameAreaWidth = 400;
@@ -57,6 +65,14 @@ function changeDirection(e) {
   else if (keys == '39' && snakeDirection != 'left') snakeDirection = 'right';
   else if (keys == '38' && snakeDirection != 'down') snakeDirection = 'up';
   else if (keys == '37' && snakeDirection != 'right') snakeDirection = 'left';
+}
+
+function changeDirectionButton(button) {
+  var buttonId = button.srcElement.id;
+  if (buttonId == 'directionUp' && snakeDirection != 'up') snakeDirection = 'up';
+  else if (buttonId == 'directionLeft' && snakeDirection != 'left') snakeDirection = 'left';
+  else if (buttonId == 'directionRight' && snakeDirection != 'right') snakeDirection = 'right';
+  else if (buttonId == 'directionDown' && snakeDirection != 'down') snakeDirection = 'down';
 }
 
 
@@ -147,6 +163,7 @@ function onStartGame() {
 
 function initEvent() {
   gameStart.addEventListener('click', onStartGame);
+  buttonUp.addEventListener('click', changeDirectionButton)
   window.addEventListener('keydown', changeDirection);
 }
 
