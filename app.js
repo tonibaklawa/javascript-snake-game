@@ -164,6 +164,9 @@ function onStartGame() {
 function initEvent() {
   gameStart.addEventListener('click', onStartGame);
   buttonUp.addEventListener('click', changeDirectionButton)
+  buttonDown.addEventListener('click', changeDirectionButton)
+  buttonRight.addEventListener('click', changeDirectionButton)
+  buttonLeft.addEventListener('click', changeDirectionButton)
   window.addEventListener('keydown', changeDirection);
 }
 
